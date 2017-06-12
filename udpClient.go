@@ -1,0 +1,29 @@
+package main
+
+import (
+	"bufio"
+	"flag"
+	"fmt"
+	"net"
+)
+
+var host string
+
+func main() {
+	flag.StringVar(&host, "host", "127.0.0.1", "The host to connect to. Example 127.0.0.1:1234")
+	flag.Parse()
+	p := make([]byte, 2048)
+	conn, err := net.Dial("udp", host+":1234")
+	if err != nil {
+		fmt.Printf("Some error %v", err)
+		return
+	}
+	fmt.Fprintf(conn, "Hi UDP Server, How are you doing?")
+	_, err = bufio.NewReader(conn).Read(p)
+	if err == nil {
+		fmt.Printf("%s\n", p)
+	} else {
+		fmt.Printf("Some error %v\n", err)
+	}
+	conn.Close()
+}
