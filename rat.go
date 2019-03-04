@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	awaawwwwaawawwwwwwwwwwwwwwwwww := "p"
-	fmt.Println("you are", awaawwwwaawawwwwwwwwwwwwwwwwww)
+	
+	fmt.Println("hola mama")
 
 }
